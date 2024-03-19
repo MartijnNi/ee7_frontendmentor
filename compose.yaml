@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  webserver:
+    container_name: ${CONTAINER_NAME}-webserver
+    build: 
+      context: ./vendor/framework/Docker/${PHP_VERSION}
+      args:
+        - UID=${UID:-1000}
+        - GID=${GID:-1000}
+    image: runtime/php-${PHP_VERSION}
+    ports:
+      - 80:80
+      - 8080:80
+    depends_on:
+      - mysql
+      - phpmyadmin
+    volumes:
+      - ./website:/var/www
+  mysql:
+    container_name: ${CONTAINER_NAME}-mysql
+    build: 
+        context: ./vendor/framework/Docker/mysql
+    image: 'runtime/mysql-8.1'
+    ports:
+        - '3306:3306'
+    environment:
+        MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+        MYSQL_ROOT_HOST: '%'
+        MYSQL_DATABASE: '${DB_DATABASE}'
+        MYSQL_USER: '${DB_USERNAME}'
+        MYSQL_PASSWORD: '${DB_PASSWORD}'
+    volumes:
+        - mysql:/var/lib/mysql
+  phpmyadmin:
+      container_name: ${CONTAINER_NAME}-phpmyadmin 
+      image: 'phpmyadmin:5.2.1'
+      depends_on:
+        - mysql
+      ports:
+        - 8282:80
+      environment:
+        PMA_HOST: mysql
+        UPLOAD_LIMIT: 300M
+        MYSQL_USER: ${DB_USERNAME}
+        MYSQL_PASSWORD: ${DB_PASSWORD}
+  mailserver:
+    container_name: ${CONTAINER_NAME}-mailserver 
+    image: rnwood/smtp4dev:v3
+    ports:
+      - '5000:80'
+      - '25:25'
+      - '143:143'
+    volumes:
+        - smtp4dev-data:/smtp4dev
+    environment:
+      - ServerOptions__HostName=mailserver
+volumes:
+    mysql:
+        name: ${CONTAINER_NAME}_${DB_DATABASE}
+        driver: local
+    smtp4dev-data:

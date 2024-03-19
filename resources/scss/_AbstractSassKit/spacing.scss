@@ -1,0 +1,55 @@
+@use "sass:math" as *;
+@use "sass:list" as *;
+@use "unit";
+
+/// ===================================
+// Mixins
+/// ===================================
+
+@mixin mt($value) {
+  margin-top: unit.validateValue($value);
+}
+@mixin mr($value) {
+  margin-right: unit.validateValue($value);
+}
+@mixin mb($value) {
+  margin-bottom: unit.validateValue($value);
+}
+@mixin ml($value) {
+  margin-left: unit.validateValue($value);
+}
+@mixin mx($value) {
+  margin-left: unit.validateValue($value);
+  margin-right: unit.validateValue($value);
+}
+@mixin my($value) {
+  margin-top: unit.validateValue($value);
+  margin-bottom: unit.validateValue($value);
+}
+@mixin margin($values...) {
+  margin: unit.validateValues($values);
+}
+
+@mixin pt($value) {
+  padding-top: unit.validateValue($value);
+}
+@mixin pr($value) {
+  padding-right: unit.validateValue($value);
+}
+@mixin pb($value) {
+  padding-bottom: unit.validateValue($value);
+}
+@mixin pl($value) {
+  padding-left: unit.validateValue($value);
+}
+@mixin px($value) {
+  padding-left: unit.validateValue($value);
+  padding-right: unit.validateValue($value);
+}
+@mixin py($value) {
+  padding-top: unit.validateValue($value);
+  padding-bottom: unit.validateValue($value);
+}
+@mixin padding($values...) {
+  padding: unit.validateValues($values);
+}

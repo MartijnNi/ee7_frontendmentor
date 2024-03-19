@@ -1,0 +1,30 @@
+// ----------------------------------------
+// AbstractSassKit
+// ----------------------------------------
+
+/*
+  This folder contains OOP-like class files 
+  with helper functions, variables, mixins, placeholders and maps.
+  These files don't output css but are meant to reduce complexity and
+  improve efficiency. 
+
+  // Annotations are made to functions see the reference what they mean
+  http://sassdoc.com/annotations/
+*/
+
+// General / Required
+@forward "unit";
+@forward "selectors";
+
+// Helpers
+@forward "animations";
+@forward "boxes";
+@forward "spacing";
+
+// Classes
+@forward "colors";
+@forward "typography";
+@forward "shadows";
+
+// Materials
+// @forward "icons";

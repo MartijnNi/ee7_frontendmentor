@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    {embed="_embeds/_seo"
+        title="{layout:title}"
+    }
+    {!-- FAVICON --}
+    {meta_favicon}
+
+    <link rel="stylesheet" href="{exp:mix file='/assets/css/app.css'}">
+    <script src="{exp:mix file='/assets/js/app.js'}" defer></script>
+</head>
+
+<body>
+    {embed="_components/_navigation"}
+    <main>
+    {layout:contents}
+    </main>
+</body>
+
+</html>

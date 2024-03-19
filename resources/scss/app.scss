@@ -1,0 +1,15 @@
+// ------------------------------------------------
+// OOSCSS
+// ------------------------------------------------
+
+/*
+Sass recommended folder structure
+https://dev.to/dostonnabotov/a-modern-sass-folder-structure-330f
+
+*/
+@charset 'utf-8';
+/*! purgecss start ignore */
+@use "base";
+@use "components";
+@use "utilities";
+/*! purgecss end ignore */

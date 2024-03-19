@@ -1,0 +1,76 @@
+@use "unit";
+
+// Box sizes
+// --------------------------
+$default-boxes: (
+  100: unit.toRem(6px),
+  200: unit.toRem(8px),
+  300: unit.toRem(16px),
+  400: unit.toRem(24px),
+  500: unit.toRem(32px),
+  600: unit.toRem(48px),
+  700: unit.toRem(52px),
+  800: unit.toRem(64px),
+  900: unit.toRem(72px),
+);
+// Merge any custom box sizes
+$boxes: ()!default; 
+$boxes: map-merge($default-boxes, $boxes);
+
+$box-border-radius: unit.toRem(12px) !default;
+
+@function box-radius($border-radius) {
+  @if map-has-key($boxes, $border-radius) {
+    @return map-get($boxes, $border-radius);
+  } @else {
+    @return $border-radius;
+  }
+}
+
+@mixin box($box-size) {
+  @if map-has-key($boxes, $box-size) {
+    padding: map-get($boxes, $box-size);
+  } @else {
+    padding: $box-size;
+  }
+}
+
+@mixin box-rounded($box-size, $border-radius: $box-border-radius) {
+  border-radius: box-radius($border-radius);
+  @if map-has-key($boxes, $box-size) {
+    padding: map-get($boxes, $box-size);
+  } @else {
+    padding: $box-size;
+  }
+}
+
+
+@mixin box-x($box-size) {
+  @if map-has-key($boxes, $box-size) {
+    padding-left: map-get($boxes, $box-size);
+    padding-right: map-get($boxes, $box-size);
+  } @else {
+    @warn "Invalid Box Size";
+  }
+}
+
+@mixin box-y($box-size) {
+  @if map-has-key($boxes, $box-size) {
+    padding-top: map-get($boxes, $box-size);
+    padding-bottom: map-get($boxes, $box-size);
+  } @else {
+    @warn "Invalid Box Size";
+  }
+}
+
+@each $key, $value in $boxes {
+  %box-#{$key} {
+    @include box($key);
+  }
+  %box-x-#{$key} {
+    @include box-x($key);
+  }
+  %box-y-#{$key} {
+    @include box-y($key);
+  }
+}

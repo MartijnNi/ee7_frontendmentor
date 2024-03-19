@@ -1,0 +1,41 @@
+//// ==================================
+// Variables / Maps
+//// ==================================
+
+$timing-functions: (
+  bounce-gently: cubic-bezier(.5,-0.1,.5,1.4),
+  bounce: cubic-bezier(.5,-0.1,.5,2),
+);
+
+/// ===================================
+// Functions
+/// ===================================
+
+@function timing($timing-function){
+  @if map-has-key($timing-functions, $timing-function) {
+    @return map-get($timing-functions, $timing-function);
+  } @else {
+    @warn "Invalid timing function";
+  }
+}
+
+/// ===================================
+// Mixins
+/// ===================================
+
+@mixin animate($property, $speed: 200ms, $timing: ease-in-out, $delay: 0) {
+  transition-property: if(type-of($property)=='string',unquote($property),$property);
+  transition-timing-function: $timing;
+  transition-duration: $speed;
+  @if $delay != 0{
+    transition-delay: $delay;
+  }
+}
+
+@mixin animate-colors($speed: 200ms, $timing: ease-in-out, $delay: 0) {
+  @include animate('color, background-color, border-color', $speed, $timing, $delay);
+}
+
+@mixin animate-all($speed: 200ms, $timing: ease-in-out, $delay: 0) {
+  @include animate(all, $speed, $timing, $delay);
+}

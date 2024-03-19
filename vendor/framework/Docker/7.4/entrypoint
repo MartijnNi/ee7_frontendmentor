@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+usermod -u 1000 www-data
+
+service php7.4-fpm start
+
+exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf

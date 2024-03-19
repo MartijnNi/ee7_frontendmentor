@@ -1,0 +1,119 @@
+@use "../abstracts/ask" as ask;
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap');
+
+$scrollbar-thumb-color: ask.clr('grey', 200);
+$scrollbar-track-color: ask.clr('grey', 100);
+$scrollbar-track-border-color: ask.clr('grey', 300);
+$selection-color: rgba(ask.clr('grey', 300), 20%);
+/// variables in the :root for core design properties that can be reused across various elements, components, or sections of your application. This approach helps keep your codebase maintainable and flexible.
+:root {
+  color-scheme: light;
+  /// FONTS
+  --font-family: #{'Rubik, '+ask.font-family(sans-serif)};
+  --secondary-font-family: #{'Orbitron, '+ask.font-family(sans-serif)};
+  // Font weights
+  --text-regular:    #{ask.font-weight(regular)};
+  --text-semi-bold:  #{ask.font-weight(semibold)};
+  --text-bold:       #{ask.font-weight(bold)};
+  
+  /// General colors 
+  --black:  #{ask.clr('black')};
+  --white:  #{ask.clr('white')};
+
+  /// Named colors
+  --primary-color:          #{ask.clr('primary')};
+  --secondary-color:        #{ask.clr('secondary')};
+  --accent-color:           #{ask.clr('accent')};
+
+  --text-color: var(--black);
+
+  @each $color, $color-map in ask.getColors() {
+    @each $name, $value in ask.shade-map($color) {
+      --#{$color}-color-#{$name}: #{$value};
+    }
+  }
+  --body-background-color: var(--white);
+
+  --box-border-radius:    #{ask.box-radius(300)};
+  /// Typography settings
+  --h1-font-size:  #{ask.fluid-font-size(500, 700)};
+  --h2-font-size:  #{ask.fluid-font-size(500, 600)};
+  --h3-font-size:  #{ask.fluid-font-size(300, 350)};
+  --h4-font-size:  #{ask.fluid-font-size(300, 350)};
+  --h5-font-size:  #{ask.fluid-font-size(250, 300)};
+  --h6-font-size:  #{ask.fluid-font-size(250, 300)};
+  
+  --heading-font-weight:  var(--text-semi-bold);
+  --heading-line-height:  #{ask.line-height(400)};
+
+  --text-font-size:       #{ask.fluid-font-size(250, 300)};
+  --text-font-size-small: #{ask.fluid-font-size(100, 150)};
+  
+  --default-line-height:  #{ask.line-height(500)};
+  --text-line-height:     #{ask.line-height(600)};
+
+  --link-color:           var(--secondary-color);
+  --link-hover-color:     #{ask.clr(secondary, 600)};
+}
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  scrollbar-width: auto;
+  scrollbar-color: $scrollbar-thumb-color $scrollbar-track-color;
+  scroll-padding-top: 5em;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--text-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
+  line-height:  var(--default-line-height);
+  background-color: var(--body-background-color);
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+::selection {
+  background: $selection-color;
+}  
+
+/* width */
+::-webkit-scrollbar {
+  height: .75em; // for horizontal scroll
+  width: .75em;
+  cursor:pointer;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background-color: $scrollbar-track-color;
+  border-left: 1px solid $scrollbar-thumb-color;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background-color: $scrollbar-thumb-color;
+  border: 1px solid $scrollbar-track-border-color;
+  border-radius: .1em;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: $scrollbar-track-border-color;
+}

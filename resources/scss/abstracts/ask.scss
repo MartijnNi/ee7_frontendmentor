@@ -1,0 +1,28 @@
+@forward "../_AbstractSassKit" with (
+  $ASK_CONFIG: (
+    // Project colors
+    'colors' : (
+        'yellow':       hsl(52, 100%, 49%),
+        'light':        hsl(220, 0%, 97%),
+        'dark':         hsl(266, 40%, 8%),
+        'primary':      hsl(20, 90%, 66%),
+        'secondary':    hsl(204, 90%, 66%),
+        // 'primary':      hsl(31, 100%, 50%),
+        // 'secondary':    hsl(193, 97%, 50%),
+        'accent':       hsl(261, 84%, 50%),
+        'text-color':   hsl(269, 11%, 38%),
+        'grey':         hsl(266, 6%, 52%),
+    
+        'success':      hsl(144, 63%, 50%),
+        'error':        hsl(11, 97%, 50%),
+    
+        'tag':          hsl(264, 4%, 74%),
+        'name':         hsl(355, 85%, 65%),
+        'attr':         hsl(31, 73%, 63%),
+        'string':       hsl(98, 43%, 60%),
+        'class':        hsl(38, 64%, 70%),
+        'function':     hsl(203, 79%, 62%),
+        'keyword':      hsl(275, 50%, 64%),
+    )
+  ),
+);

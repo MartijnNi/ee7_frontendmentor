@@ -1,0 +1,21 @@
+@font-face {
+    font-family: "iconfont";
+    src: url("../../../website/public_html/assets/fonts/iconfont.eot?dec10dfd911f70afc428eb1863e08b26#iefix") format("embedded-opentype"),
+url("../../../website/public_html/assets/fonts/iconfont.woff2?dec10dfd911f70afc428eb1863e08b26") format("woff2"),
+url("../../../website/public_html/assets/fonts/iconfont.woff?dec10dfd911f70afc428eb1863e08b26") format("woff");
+}
+
+i[class^="icon-"]:before, i[class*=" icon-"]:before {
+    font-family: iconfont !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-box-weight:before {
+    content: "\f101";
+}
